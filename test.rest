@@ -1,0 +1,13 @@
+
+GET localhost:27017/register 
+
+###
+
+POST 127.0.0.1:27017/register Content-Type: application/json
+
+{
+    "fname": true,
+    "lname": "bootcamp",
+    "email": "m@gmail.com",
+    "password": "****"",
+  }
