@@ -5,9 +5,10 @@ var logger = require('morgan');
 var cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3000;
+
 const dontenv = require('dotenv');
 const colors = require('colors');
-
+console.log(PORT);
 dontenv.config({ path: './config/config.env' });
 
 var indexRouter = require('./routes/index');
