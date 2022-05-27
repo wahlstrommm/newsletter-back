@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const mongoose = require('mongoose');
 
 const dontenv = require('dotenv');
 const colors = require('colors');
@@ -14,6 +15,7 @@ var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 var adminRouter = require('./routes/admin');
+var updateUserRouter = require('./routes/updateUser');
 var app = express();
 
 app.use(cors());
@@ -28,15 +30,13 @@ app.use('/users', usersRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/admin', adminRouter);
-const MongoClient = require('mongodb').MongoClient;
+app.use('/updateUser', updateUserRouter);
 
-MongoClient.connect(process.env.MONGO_URL, {
-  useUnifiedTopology: true,
-}).then((client) => {
-  console.log('Server är igång'.yellow.bold);
-  const db = client.db(process.env.MONGO_DB);
-  app.locals.db = db;
-  database = db;
-});
+mongoose.connect(process.env.MONGO_URL);
+const db = mongoose.connection;
 
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('connected to database'.yellow.bold));
+
+app.listen(3000, () => console.log('Server igång!'.yellow.bold));
 module.exports = app;

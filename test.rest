@@ -1,13 +1,17 @@
 
-GET localhost:27017/register 
+GET mongodb://127.0.0.1:27017/Newsletter-Subscription Content-Type: application/json
+{
+  "email":"222",
+  "password":"sss"
+}
 
 ###
 
-POST 127.0.0.1:27017/register Content-Type: application/json
+POST http://localhost:3000/login  Content-Type: application/json
 
 {
-    "fname": true,
-    "lname": "bootcamp",
-    "email": "m@gmail.com",
-    "password": "****"",
+    "fname": "33",
+    "lname": "33",
+    "email": "33",
+    "password": "33",
   }

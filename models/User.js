@@ -1,36 +1,34 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+  fname: {
+    type: String,
+    required: [true, 'Lägg till ett namn'],
+    unique: true,
+    trim: true,
+    maxlength: [50, 'Namn kan inte var större än 50 bokstäver'],
+  },
+  lname: {
+    type: String,
+    required: [true, 'Lägg till ett namn'],
+    unique: true,
+    trim: true,
+    maxlength: [50, 'Namn kan inte var större än 50 bokstäver'],
+  },
   email: {
     type: String,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please add a valid email'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Var snäll och skriv en riktig mail!'],
   },
   password: {
     type: String,
     required: [true, 'Lägg till ett lösenord'],
-    // unique: true,
-    // trim: true,
-    // maxlength: [10, 'Lösenordet kan inte vara längre 10 tecken'],
+    unique: true,
+    trim: true,
   },
   subscribed: {
     type: Boolean,
-    default: false,
+    required: [true],
   },
 });
 
 module.exports = mongoose.model('User', UserSchema);
-// fname: {
-//   type: String,
-//   required: [true, 'Lägg till ett namn'],
-//   unique: true,
-//   trim: true,
-//   maxlength: [50, 'Namn kan inte var större än 50 bokstäver'],
-// },
-// lname: {
-//   type: String,
-//   required: [true, 'Lägg till ett namn'],
-//   unique: true,
-//   trim: true,
-//   maxlength: [50, 'Namn kan inte var större än 50 bokstäver'],
-// },

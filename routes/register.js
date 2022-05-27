@@ -1,27 +1,28 @@
 var express = require('express');
 var router = express.Router();
-let UserSchema = require('../models/User');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-const dataFromDB = require('../services/GetFromDB');
-
+//Kolla så mailen annars skapar man en ny användare!
 router.post('/', async (req, res) => {
-  let userEmail = '';
-  await req.app.locals.db
-    .collection('users')
-    .findOne({ email: req.body.email })
-    .then((data) => {
-      userEmail = data;
-      return userEmail;
-    });
+  let userEmail = req.body.email;
+  await User.findOne({ email: req.body.email }).then((data) => {
+    userEmail = data;
+    return userEmail;
+  });
   if (userEmail) {
-    res.send('Finns redan ett konto med denna mail');
+    res.status(400).send('Blev något fel testa igen!');
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const user = new UserSchema({ _id: new mongoose.Types.ObjectId(), email: req.body.email, password: hashedPassword, subscribed: false });
-      res.json(user);
-      req.app.locals.db.collection('users').insertOne(user);
+      const user = new User({ fname: req.body.fname, lname: req.body.lname, email: req.body.email, password: hashedPassword, subscribed: req.body.subcriber });
+
+      try {
+        const Newuser = await user.save();
+        res.json({ status: 'OK' });
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+        console.log('error 400', error);
+      }
     } catch (error) {
       res.status(500).send();
     }
