@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 const mongoose = require('mongoose');
-
+const PORT = process.env.PORT || 3000;
 const dontenv = require('dotenv');
 const colors = require('colors');
 
@@ -38,5 +38,5 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('connected to database'.yellow.bold));
 
-app.listen(3000, () => console.log('Server igång!'.yellow.bold));
+app.listen(PORT, () => console.log('Server igång!'.yellow.bold));
 module.exports = app;
