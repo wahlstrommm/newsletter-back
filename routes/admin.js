@@ -34,7 +34,7 @@ router.get('/overview', async (req, res) => {
     html += '<div><h2>Nedanför hittar ni listan på alla användare som prenumerera<hr>  </h2> </div>';
     for (let i = 0; i < userList.length; i++) {
       if (userList[i].subscribed) {
-        let subUser = `<div><h5>Email: ${userList[i].email} <br><br>  id: ${userList[i]._id} <br><br> <hr></div>`;
+        let subUser = `<div><br><br><h5>Email: ${userList[i].email}<br><br> <hr></div>`;
         html += subUser;
       }
     }
