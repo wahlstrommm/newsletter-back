@@ -19,7 +19,7 @@ router.get('/overview', async (req, res) => {
     await User.find().then((data) => {
       userList = data;
     });
-    let html = '<div><button id="logOutBtn"><a href="/index.html">Tillbaka till startsidan</button></a></div>';
+    let html = '<div><button id="logOutBtn"><a href="https://wahlstrommm.github.io/newsletter-front/login.html">Tillbaka till startsidan</button></a></div>';
     userList.forEach((element, index) => {
       html += `<div><h5> Användare nummer ${index + 1}! <br><br>
           Email: ${element.email}<br>
