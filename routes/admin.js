@@ -3,8 +3,8 @@ var router = express.Router();
 const User = require('../models/User');
 //post som kollar om Admin inlogg stämmer.
 router.post('/', (req, res) => {
-  let email = req.body.email.toLowerCase();
-  let password = req.body.password.toLowerCase();
+  let email = req.body.email;
+  let password = req.body.password;
   if (email === 'admin' && password === 'admin') {
     res.redirect('./admin/overview');
   } else {
