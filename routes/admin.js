@@ -31,13 +31,10 @@ router.get('/overview', async (req, res) => {
           <hr>
           </div>`;
     });
-    html += '<div><h2>Nedanför hittar ni listan på alla som registrerade användare<hr>  </h2> </div>';
+    html += '<div><h2>Nedanför hittar ni listan på alla användare som prenumerera<hr>  </h2> </div>';
     for (let i = 0; i < userList.length; i++) {
       if (userList[i].subscribed) {
-        let subUser = `<h5>Email: ${userList[i].email} <br><br>  id: ${userList[i]._id} <br><br>  Prenumerera: ${userList[i].subscribed} <br>
-          Förnamn: ${userList[i].fname}<br>
-          Efternamn: ${userList[i].lname}<br> 
-          Password längd: ***** <br><hr></h3><br> `;
+        let subUser = `<h5>Email: ${userList[i].email} <br><br>  id: ${userList[i]._id} <br><br> `;
         html += subUser;
       }
     }
