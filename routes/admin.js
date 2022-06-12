@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
   let login = `<div>
   <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a>
   <form>
-  <form action="/login" method="post">
+  <form action="admin/login" method="post">
   <input placeholder="Username" name="username" type="text" />
   <br />
 <input placeholder="Password" name="password" type="password" />
@@ -20,7 +20,7 @@ router.post('/login', (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   if (email === 'admin' && password === 'admin') {
-    res.redirect('./admin/overview');
+    res.redirect('/admin/overview');
   } else {
     res.send('fel inmatning');
   }
