@@ -20,7 +20,8 @@ router.post('/login', (req, res) => {
   if (email === 'admin' && password === 'admin') {
     res.redirect('/admin/overview');
   } else {
-    res.send('fel inmatning');
+    let html = `Fel inmatning... <a href="/"><button>Tillbaka</button></a>`;
+    res.send(html);
   }
 });
 
