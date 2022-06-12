@@ -3,11 +3,9 @@ var router = express.Router();
 const User = require('../models/User');
 router.get('/', (req, res) => {
   let login = `<div>
-  <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a>
-  <form>
+  <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a><br />
   <form action="admin/login" method="post">
-  <input placeholder="Username" name="username" type="text" />
-  <br />
+  <input placeholder="email" name="email" type="text" />
 <input placeholder="Password" name="password" type="password" />
 <br />
 <input name="submitButton" type="submit" />
