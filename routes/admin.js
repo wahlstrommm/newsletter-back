@@ -32,14 +32,14 @@ router.get('/overview', async (req, res) => {
     await User.find().then((data) => {
       userList = data;
     });
-    let html = '<div><button id="logOutBtn"><a href="/">Tillbaka till startsidan</button></a></div>';
+    let html = '<div><button id="logOutBtn"><a href="https://wahlstrommm.github.io/newsletter-front/">Tillbaka till startsidan</button></a></div>';
     userList.forEach((element, index) => {
       html += `<div><h5> Användare nummer ${index + 1}! <br><br>
           Email: ${element.email}<br>
           Förnamn: ${element.fname}<br>
           Efternamn: ${element.lname}<br>
           id: ${element._id} <br>
-          pa  ssword längd: ***** <br>
+          password längd: ***** <br>
           </h5>
           <hr>
           </div>`;
