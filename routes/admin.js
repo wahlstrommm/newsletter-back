@@ -3,6 +3,7 @@ var router = express.Router();
 const User = require('../models/User');
 let loggedin = false;
 router.get('/', (req, res) => {
+  loggedin = false;
   let login = `<div>
   <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a><br />
   <form action="admin/login" method="post">
@@ -35,7 +36,7 @@ router.get('/overview', async (req, res) => {
       await User.find().then((data) => {
         userList = data;
       });
-      let html = '<div><button id="logOutBtn"><a href="https://wahlstrommm.github.io/newsletter-front/">Tillbaka till startsidan</button></a></div>';
+      let html = '<div><button id="logOutBtn"><a href="https://wahlstrommm.github.io/newsletter-front/">Tillbaka till startsidan</button></a> <a href="/admin"><button>Logga ut</button></a></div>';
       userList.forEach((element, index) => {
         html += `<div><h5> Användare nummer ${index + 1}! <br><br>
             Email: ${element.email}<br>
