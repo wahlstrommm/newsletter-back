@@ -1,6 +1,20 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/User');
+router.get('/', (req, res) => {
+  let login = `<div>
+  <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a>
+  <form>
+  <form action="/" method="post">
+  <input placeholder="Username" name="username" type="text" />
+  <br />
+<input placeholder="Password" name="password" type="password" />
+<br />
+<input name="submitButton" type="submit" />
+</form>
+</div>`;
+  res.send(login);
+});
 //post som kollar om Admin inlogg stämmer.
 router.post('/', (req, res) => {
   let email = req.body.email;
@@ -11,6 +25,7 @@ router.post('/', (req, res) => {
     res.send('fel inmatning');
   }
 });
+
 //Get som skickar tillbaka
 router.get('/overview', async (req, res) => {
   let userList;
@@ -19,14 +34,14 @@ router.get('/overview', async (req, res) => {
     await User.find().then((data) => {
       userList = data;
     });
-    let html = '<div><button id="logOutBtn"><a href="https://wahlstrommm.github.io/newsletter-front/login.html">Tillbaka till startsidan</button></a></div>';
+    let html = '<div><button id="logOutBtn"><a href="/">Tillbaka till startsidan</button></a></div>';
     userList.forEach((element, index) => {
       html += `<div><h5> Användare nummer ${index + 1}! <br><br>
           Email: ${element.email}<br>
           Förnamn: ${element.fname}<br>
           Efternamn: ${element.lname}<br>
           id: ${element._id} <br>
-          password längd: ***** <br>
+          pa  ssword längd: ***** <br>
           </h5>
           <hr>
           </div>`;
@@ -39,7 +54,7 @@ router.get('/overview', async (req, res) => {
       }
     }
     html += '</div>';
-    return res.json(html);
+    return res.send(html);
   } catch (error) {
     res.send('fel', error);
   }
