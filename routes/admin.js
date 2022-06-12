@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
   let login = `<div>
   <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a>
   <form>
-  <form action="/" method="post">
+  <form action="/login" method="post">
   <input placeholder="Username" name="username" type="text" />
   <br />
 <input placeholder="Password" name="password" type="password" />
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
   res.send(login);
 });
 //post som kollar om Admin inlogg stämmer.
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
   if (email === 'admin' && password === 'admin') {
