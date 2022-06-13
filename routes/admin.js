@@ -5,7 +5,7 @@ let loggedin = false;
 router.get('/', (req, res) => {
   loggedin = false;
   let login = `<div>
-  <a href="http://127.0.0.1:5500/index.html"><button>Tillbaka</button></a><br />
+  <a href="https://wahlstrommm.github.io/newsletter-front/"><button>Tillbaka</button></a><br />
   <form action="admin/login" method="post">
   <input placeholder="email" name="email" type="text" />
 <input placeholder="Password" name="password" type="password" />
@@ -23,7 +23,7 @@ router.post('/login', (req, res) => {
     loggedin = true;
     res.redirect('/admin/overview');
   } else {
-    let html = `Fel inmatning... <a href="/"><button>Tillbaka</button></a>`;
+    let html = `Fel inmatning... <a href="/admin"><button>Tillbaka</button></a>`;
     res.send(html);
   }
 });
